@@ -3,163 +3,557 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inklith — A Workspace for Writers</title>
-  <meta name="description" content="Inklith is a powerful workspace built for writers. Write, organize, plan, and bring your stories to life.">
+
+  <title>Inklith — The Workspace for Writers</title>
+
+  <meta name="description" content="Inklith is a focused workspace for writers. Write, organize, plan, and build your stories in one place.">
+  <meta name="theme-color" content="#09090b">
+
+  <meta property="og:title" content="Inklith — The Workspace for Writers">
+  <meta property="og:description" content="Write. Organize. Build worlds. Bring your stories to life with Inklith.">
+  <meta property="og:type" content="website">
+
   <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #151519;
+      --border: #27272a;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --dim: #71717a;
+      --accent-1: #a78bfa;
+      --accent-2: #60a5fa;
+      --max: 1120px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #09090b;
-      color: #f4f4f5;
-      min-height: 100vh;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(124, 58, 237, .18), transparent 38%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      width: min(1100px, 92%);
+      width: min(var(--max), 92%);
       margin: auto;
     }
 
+    /* NAV */
+
     nav {
+      height: 78px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 24px 0;
+      justify-content: space-between;
     }
 
     .logo {
-      font-size: 28px;
-      font-weight: 800;
+      font-size: 25px;
+      font-weight: 850;
       letter-spacing: -1px;
     }
 
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-download {
+      padding: 9px 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text) !important;
+      background: rgba(255,255,255,.03);
+    }
+
+    /* HERO */
+
     .hero {
       text-align: center;
-      padding: 100px 0 80px;
+      padding: 105px 0 85px;
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, .12);
+      filter: blur(90px);
+      left: 50%;
+      top: 30px;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
 
     .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid #27272a;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid var(--border);
       border-radius: 999px;
-      color: #a1a1aa;
-      font-size: 14px;
-      margin-bottom: 24px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-1);
+      box-shadow: 0 0 12px var(--accent-1);
     }
 
     h1 {
-      font-size: clamp(48px, 9vw, 88px);
-      line-height: .95;
-      letter-spacing: -4px;
-      max-width: 850px;
+      max-width: 900px;
       margin: auto;
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: .98;
+      letter-spacing: -5px;
     }
 
     .gradient {
-      background: linear-gradient(90deg, #a78bfa, #60a5fa);
+      background: linear-gradient(100deg, var(--accent-1), var(--accent-2));
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero p {
-      max-width: 650px;
-      margin: 28px auto;
-      color: #a1a1aa;
-      font-size: 19px;
-      line-height: 1.7;
+    .hero-description {
+      max-width: 680px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
     }
 
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 14px;
+      gap: 13px;
       flex-wrap: wrap;
-      margin-top: 32px;
+      margin-top: 34px;
     }
 
     .button {
-      text-decoration: none;
-      padding: 14px 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 21px;
       border-radius: 12px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .primary {
-      background: #f4f4f5;
-      color: #09090b;
-    }
-
-    .secondary {
-      border: 1px solid #27272a;
-      color: #f4f4f5;
+      font-weight: 750;
+      font-size: 14px;
+      transition: transform .2s, border-color .2s, background .2s;
     }
 
     .button:hover {
       transform: translateY(-2px);
     }
 
-    .features {
-      padding: 60px 0 100px;
+    .primary {
+      background: var(--text);
+      color: var(--bg);
     }
 
-    .features h2 {
+    .secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      color: var(--text);
+    }
+
+    .secondary:hover {
+      border-color: #3f3f46;
+    }
+
+    .availability {
+      margin-top: 15px;
+      color: var(--dim);
+      font-size: 12px;
+    }
+
+    /* PRODUCT PREVIEW */
+
+    .preview-wrap {
+      padding: 10px 0 105px;
+    }
+
+    .preview {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #151519, #0d0d0f);
+      box-shadow: 0 30px 100px rgba(0,0,0,.4);
+      overflow: hidden;
+    }
+
+    .window-bar {
+      height: 46px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 7px;
+    }
+
+    .window-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3f3f46;
+    }
+
+    .mockup {
+      min-height: 330px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+
+    .sidebar {
+      border-right: 1px solid var(--border);
+      padding: 25px 18px;
+    }
+
+    .side-title {
+      font-weight: 750;
+      margin-bottom: 22px;
+    }
+
+    .side-item {
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: var(--dim);
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .side-item.active {
+      color: var(--text);
+      background: #1c1c20;
+    }
+
+    .editor {
+      padding: 38px clamp(25px, 6vw, 70px);
+    }
+
+    .editor-small {
+      color: var(--dim);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .editor h3 {
+      font-size: clamp(25px, 4vw, 42px);
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .fake-line {
+      height: 9px;
+      background: #27272a;
+      border-radius: 20px;
+      margin: 11px 0;
+      width: 90%;
+    }
+
+    .fake-line.short {
+      width: 62%;
+    }
+
+    .fake-line.medium {
+      width: 76%;
+    }
+
+    /* SECTIONS */
+
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    .section {
+      padding: 95px 0;
+    }
+
+    .section-heading {
       text-align: center;
-      font-size: 38px;
-      margin-bottom: 45px;
+      max-width: 700px;
+      margin: auto;
     }
 
-    .grid {
+    .eyebrow {
+      color: var(--accent-1);
+      font-size: 13px;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: -2.5px;
+      line-height: 1.05;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    /* FEATURES */
+
+    .feature-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+      margin-top: 50px;
+    }
+
+    .feature {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.018);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .feature:hover {
+      transform: translateY(-4px);
+      border-color: #3f3f46;
+    }
+
+    .feature-icon {
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* PHILOSOPHY */
+
+    .statement {
+      margin-top: 45px;
+      padding: 55px 35px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at center, rgba(96,165,250,.08), transparent 55%),
+        var(--surface);
+    }
+
+    .statement h2 {
+      max-width: 780px;
+      margin: auto;
+      font-size: clamp(27px, 4vw, 45px);
+      letter-spacing: -2px;
+      line-height: 1.15;
+    }
+
+    .statement p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 18px auto 0;
+    }
+
+    /* DOWNLOAD */
+
+    .download-section {
+      padding: 100px 0;
+    }
+
+    .download-box {
+      text-align: center;
+      padding: 65px 25px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(167,139,250,.12), transparent 50%),
+        var(--surface);
+    }
+
+    .download-box h2 {
+      font-size: clamp(32px, 5vw, 54px);
+      letter-spacing: -2.5px;
+    }
+
+    .download-box p {
+      max-width: 600px;
+      margin: 15px auto 25px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-weight: 800;
+    }
+
+    .footer-copy {
+      color: var(--dim);
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
       gap: 18px;
     }
 
-    .card {
-      border: 1px solid #27272a;
-      background: #111113;
-      border-radius: 18px;
-      padding: 28px;
+    .footer-links a {
+      color: var(--dim);
+      font-size: 13px;
     }
 
-    .icon {
-      font-size: 30px;
-      margin-bottom: 18px;
+    .footer-links a:hover {
+      color: var(--text);
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
+    /* RESPONSIVE */
 
-    .card p {
-      color: #a1a1aa;
-      line-height: 1.6;
-    }
-
-    footer {
-      border-top: 1px solid #27272a;
-      padding: 30px 0;
-      color: #71717a;
-      text-align: center;
-    }
-
-    @media (max-width: 750px) {
-      .grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 800px) {
+      .nav-links a:not(.nav-download) {
+        display: none;
       }
 
       .hero {
-        padding: 70px 0;
+        padding: 75px 0 65px;
       }
 
       h1 {
-        letter-spacing: -2px;
+        letter-spacing: -3px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mockup {
+        grid-template-columns: 125px 1fr;
+      }
+
+      .sidebar {
+        padding: 20px 12px;
+      }
+
+      .editor {
+        padding: 30px 22px;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav {
+        height: 68px;
+      }
+
+      .nav-download {
+        padding: 8px 12px;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .button {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .preview {
+        border-radius: 16px;
+      }
+
+      .mockup {
+        min-height: 270px;
+        grid-template-columns: 95px 1fr;
+      }
+
+      .side-item {
+        font-size: 11px;
+        padding: 8px 6px;
+      }
+
+      .editor h3 {
+        font-size: 25px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -168,94 +562,260 @@
 <body>
 
   <div class="container">
+
     <nav>
-      <div class="logo">Inklith</div>
+      <a href="#" class="logo">Inklith</a>
+
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a
+          class="nav-download"
+          href="https://github.com/renlith/Inklith/releases/latest/download/Inklith-v1.0.0.apk">
+          Download
+        </a>
+      </div>
     </nav>
 
     <main>
+
+      <!-- HERO -->
+
       <section class="hero">
-        <div class="badge">Built for writers ✦</div>
+        <div class="glow"></div>
 
-        <h1>
-          Your stories deserve a
-          <span class="gradient">better workspace.</span>
-        </h1>
+        <div class="hero-content">
+          <div class="badge">
+            <span class="dot"></span>
+            Built for writers
+          </div>
 
-        <p>
-          Inklith brings writing, ideas, projects, worldbuilding,
-          and powerful writer tools into one focused workspace.
-        </p>
+          <h1>
+            Your stories deserve a
+            <span class="gradient">better workspace.</span>
+          </h1>
 
-        <div class="buttons">
-          <a class="button primary"
-             href="https://github.com/renlith/Inklith/releases/latest/download/Inklith-v1.0.0.apk">
-            Download for Android
-          </a>
+          <p class="hero-description">
+            Inklith brings writing, ideas, projects, worldbuilding,
+            and useful writer tools into one focused workspace.
+          </p>
 
-          <a class="button secondary" href="#features">
-            Explore Features
-          </a>
+          <div class="buttons">
+            <a
+              class="button primary"
+              href="https://github.com/renlith/Inklith/releases/latest/download/Inklith-v1.0.0.apk">
+              ↓&nbsp; Download for Android
+            </a>
+
+            <a class="button secondary" href="#features">
+              Explore Inklith
+            </a>
+          </div>
+
+          <div class="availability">
+            Android • Version 1.0.0
+          </div>
         </div>
       </section>
 
-      <section class="features" id="features">
-        <h2>Everything writers need.</h2>
 
-        <div class="grid">
-          <div class="card">
-            <div class="icon">✍️</div>
+      <!-- PRODUCT PREVIEW -->
+
+      <section class="preview-wrap" aria-label="Inklith preview">
+        <div class="preview">
+
+          <div class="window-bar">
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+          </div>
+
+          <div class="mockup">
+
+            <div class="sidebar">
+              <div class="side-title">Inklith</div>
+
+              <div class="side-item active">Writing</div>
+              <div class="side-item">Projects</div>
+              <div class="side-item">Worldbuilding</div>
+              <div class="side-item">Ideas</div>
+              <div class="side-item">Tools</div>
+            </div>
+
+            <div class="editor">
+              <div class="editor-small">MY STORY / CHAPTER 01</div>
+
+              <h3>The story begins here.</h3>
+
+              <div class="fake-line"></div>
+              <div class="fake-line medium"></div>
+              <div class="fake-line"></div>
+              <div class="fake-line short"></div>
+              <div class="fake-line medium"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- FEATURES -->
+
+      <section class="section" id="features">
+
+        <div class="section-heading">
+          <div class="eyebrow">The workspace</div>
+
+          <h2>Everything around your story, in one place.</h2>
+
+          <p>
+            Stop scattering your ideas across different apps.
+            Keep your creative work organized inside one workspace.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature">
+            <div class="feature-icon">✍️</div>
             <h3>Writing Workspace</h3>
             <p>
-              Write and organize your stories in a distraction-free environment.
+              Write and organize your stories in a focused environment
+              designed around the writing process.
             </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div class="icon">🗺️</div>
+          <article class="feature">
+            <div class="feature-icon">🗺️</div>
             <h3>Worldbuilding</h3>
             <p>
-              Keep characters, locations, lore, ideas, and story information organized.
+              Keep characters, locations, lore, ideas, and story information
+              organized alongside your writing.
             </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div class="icon">📚</div>
+          <article class="feature">
+            <div class="feature-icon">📚</div>
             <h3>Writer Tools</h3>
             <p>
-              Useful tools for vocabulary, ideas, planning, and improving your writing.
+              Useful tools for vocabulary, ideas, planning, and improving
+              your writing workflow.
             </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div class="icon">📊</div>
+          <article class="feature">
+            <div class="feature-icon">📊</div>
             <h3>Project Tracking</h3>
             <p>
-              Track your writing projects and see your progress over time.
+              Keep track of your writing projects and follow your progress
+              as your stories grow.
             </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div class="icon">🧠</div>
+          <article class="feature">
+            <div class="feature-icon">🧠</div>
             <h3>Ideas & Notes</h3>
             <p>
-              Capture ideas instantly and turn them into complete stories.
+              Capture ideas when they appear and keep them connected to
+              the projects they belong to.
             </p>
-          </div>
+          </article>
 
-          <div class="card">
-            <div class="icon">⚡</div>
+          <article class="feature">
+            <div class="feature-icon">⚡</div>
             <h3>Made for Authors</h3>
             <p>
-              One workspace designed around the actual needs of writers.
+              A workspace built around the actual creative workflow of
+              writers and storytellers.
             </p>
-          </div>
+          </article>
+
         </div>
       </section>
+
+
+      <!-- ABOUT -->
+
+      <section class="section" id="about">
+
+        <div class="section-heading">
+          <div class="eyebrow">Why Inklith</div>
+
+          <h2>Writing shouldn't feel like managing files.</h2>
+
+          <p>
+            Your tools should disappear into the background so you can
+            focus on the thing that matters — creating the story.
+          </p>
+        </div>
+
+        <div class="statement">
+          <h2>
+            Write the story.
+            <span class="gradient">Build the world.</span>
+            Make it yours.
+          </h2>
+
+          <p>
+            Inklith is being built as a home for writers — from the first
+            random idea to the finished story.
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- DOWNLOAD -->
+
+      <section class="download-section">
+
+        <div class="download-box">
+
+          <div class="eyebrow">Start writing</div>
+
+          <h2>Give your stories a home.</h2>
+
+          <p>
+            Download Inklith for Android and start building your next story.
+          </p>
+
+          <a
+            class="button primary"
+            href="https://github.com/renlith/Inklith/releases/latest/download/Inklith-v1.0.0.apk">
+            ↓&nbsp; Download Inklith
+          </a>
+
+        </div>
+
+      </section>
+
     </main>
 
+
+    <!-- FOOTER -->
+
     <footer>
-      © 2026 Inklith. Built for writers.
+      <div class="footer-inner">
+
+        <div>
+          <div class="footer-brand">Inklith</div>
+          <div class="footer-copy">
+            © 2026 Inklith. Built for writers.
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a
+            href="https://github.com/renlith/Inklith/releases">
+            Releases
+          </a>
+        </div>
+
+      </div>
     </footer>
+
   </div>
 
 </body>
