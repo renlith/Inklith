@@ -14,6 +14,209 @@
   <meta property="og:type" content="website">
 
   <style>
+/* FEATURE SHOWCASE */
+
+.showcase-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 55px;
+}
+
+.showcase-card {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  min-height: 340px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.showcase-card.reverse {
+  grid-template-columns: .9fr 1.1fr;
+}
+
+.showcase-card.reverse .showcase-content {
+  order: -1;
+}
+
+.showcase-visual {
+  padding: 32px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(167,139,250,.10), transparent 60%),
+    #0d0d0f;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.showcase-card.reverse .showcase-visual {
+  border-right: 0;
+  border-left: 1px solid var(--border);
+}
+
+.visual-top {
+  color: var(--dim);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+}
+
+.visual-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.visual-line {
+  height: 8px;
+  width: 85%;
+  background: #27272a;
+  border-radius: 20px;
+  margin: 9px 0;
+}
+
+.visual-line.wide {
+  width: 95%;
+}
+
+.visual-line.short {
+  width: 55%;
+}
+
+.showcase-content {
+  padding: 45px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.showcase-content > span {
+  color: var(--accent-1);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 13px;
+}
+
+.showcase-content h3 {
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin-bottom: 15px;
+}
+
+.showcase-content p {
+  color: var(--muted);
+  max-width: 470px;
+  line-height: 1.75;
+}
+
+.project-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17px;
+  font-size: 13px;
+}
+
+.project-row span {
+  color: var(--dim);
+}
+
+.progress {
+  height: 7px;
+  border-radius: 20px;
+  background: #27272a;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  border-radius: inherit;
+}
+
+.world-nodes {
+  position: relative;
+  height: 210px;
+}
+
+.node {
+  position: absolute;
+  padding: 10px 13px;
+  border: 1px solid #3f3f46;
+  border-radius: 9px;
+  background: #18181b;
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.main-node {
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  color: var(--text);
+  border-color: var(--accent-1);
+}
+
+.node-one {
+  left: 4%;
+  top: 5%;
+}
+
+.node-two {
+  right: 2%;
+  top: 5%;
+}
+
+.node-three {
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+
+.note {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #151519;
+  padding: 14px 16px;
+  margin: 9px 0;
+}
+
+.note strong {
+  display: block;
+  font-size: 13px;
+}
+
+.note small {
+  color: var(--dim);
+  font-size: 11px;
+}
+
+@media (max-width: 800px) {
+  .showcase-card,
+  .showcase-card.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-card.reverse .showcase-content {
+    order: initial;
+  }
+
+  .showcase-visual,
+  .showcase-card.reverse .showcase-visual {
+    border: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .showcase-content {
+    padding: 32px;
+  }
+}
+
     :root {
       --bg: #09090b;
       --surface: #111113;
@@ -580,6 +783,148 @@
     <main>
 
       <!-- HERO -->
+
+<!-- INKLITH FEATURE SHOWCASE -->
+
+<section class="section" id="showcase">
+
+  <div class="section-heading">
+    <div class="eyebrow">Inside Inklith</div>
+
+    <h2>Built around the way writers actually work.</h2>
+
+    <p>
+      From the first idea to a growing story, keep your creative
+      workspace organized without breaking your flow.
+    </p>
+  </div>
+
+  <div class="showcase-grid">
+
+    <div class="showcase-card">
+      <div class="showcase-visual writing-visual">
+        <div class="visual-top">INKLITH / WRITING</div>
+        <div class="visual-title">Chapter One</div>
+        <div class="visual-line"></div>
+        <div class="visual-line wide"></div>
+        <div class="visual-line"></div>
+        <div class="visual-line short"></div>
+      </div>
+
+      <div class="showcase-content">
+        <span>01</span>
+        <h3>Write without distractions.</h3>
+        <p>
+          Keep your writing space focused while your projects,
+          notes, and ideas stay organized around it.
+        </p>
+      </div>
+    </div>
+
+
+    <div class="showcase-card reverse">
+      <div class="showcase-visual project-visual">
+        <div class="visual-top">PROJECTS</div>
+
+        <div class="project-row">
+          <b>My Novel</b>
+          <span>72%</span>
+        </div>
+
+        <div class="progress">
+          <i style="width:72%"></i>
+        </div>
+
+        <div class="project-row">
+          <b>Short Story</b>
+          <span>41%</span>
+        </div>
+
+        <div class="progress">
+          <i style="width:41%"></i>
+        </div>
+
+        <div class="project-row">
+          <b>New Project</b>
+          <span>18%</span>
+        </div>
+
+        <div class="progress">
+          <i style="width:18%"></i>
+        </div>
+      </div>
+
+      <div class="showcase-content">
+        <span>02</span>
+        <h3>Know where your projects stand.</h3>
+        <p>
+          Organize your writing projects and keep an eye on
+          your progress as your stories grow.
+        </p>
+      </div>
+    </div>
+
+
+    <div class="showcase-card">
+      <div class="showcase-visual world-visual">
+
+        <div class="visual-top">WORLDBUILDING</div>
+
+        <div class="world-nodes">
+          <div class="node main-node">WORLD</div>
+          <div class="node node-one">CHARACTERS</div>
+          <div class="node node-two">LOCATIONS</div>
+          <div class="node node-three">LORE</div>
+        </div>
+
+      </div>
+
+      <div class="showcase-content">
+        <span>03</span>
+        <h3>Build worlds beyond the page.</h3>
+        <p>
+          Keep characters, locations, lore, and other story
+          information close to your writing.
+        </p>
+      </div>
+    </div>
+
+
+    <div class="showcase-card reverse">
+      <div class="showcase-visual ideas-visual">
+
+        <div class="visual-top">IDEAS & NOTES</div>
+
+        <div class="note">
+          <strong>Story Idea</strong>
+          <small>A strange city appears...</small>
+        </div>
+
+        <div class="note">
+          <strong>Character</strong>
+          <small>Possible antagonist concept</small>
+        </div>
+
+        <div class="note">
+          <strong>Plot Thread</strong>
+          <small>Connect this to chapter 12</small>
+        </div>
+
+      </div>
+
+      <div class="showcase-content">
+        <span>04</span>
+        <h3>Never lose a good idea.</h3>
+        <p>
+          Capture thoughts, concepts, and notes before they
+          disappear—and turn them into something bigger.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
 
       <section class="hero">
         <div class="glow"></div>
